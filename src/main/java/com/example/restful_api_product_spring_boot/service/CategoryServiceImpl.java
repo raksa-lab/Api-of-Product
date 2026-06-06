@@ -18,7 +18,7 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
     private static final Logger log = LoggerFactory.getLogger(CategoryServiceImpl.class);
     private final CategoryRepository categoryRepository;
-    private Integer nextId = 1;
+    private Integer nextId = 4;
 
     private Category mapToEntity (CategoryRequest categoryRequest){
         Category category = new Category();
