@@ -15,23 +15,33 @@ import java.util.List;
 @RequestMapping("/api/v1/categories")
 public class CategoryRestController {
     private final CategoryService categoryService;
+//    @GetMapping
+//    public List<CategoryResponse> getCategory(){
+//        return categoryService.findAllCategories();
+//    }
+//
+//    @GetMapping("/{id}")
+//    public CategoryResponse getCategoryById(@PathVariable Integer id){
+//        return categoryService.findCategoryById(id);
+//    }
+//
+//    @PostMapping
+//    public CategoryResponse createCategory(@RequestBody CategoryRequest request){
+//        return categoryService.createCategory(request);
+//    }
+//
+//    @PatchMapping("/{id}")
+//    public CategoryResponse updateCategory(@PathVariable Integer id , @RequestBody UpdateCategoryRequest updateCategoryRequest){
+//        return categoryService.updateCategory(id , updateCategoryRequest);
+//    }
+
     @GetMapping
-    public List<CategoryResponse> getCategory(){
+    List<CategoryResponse> getAllCategory(){
         return categoryService.findAllCategories();
     }
 
-    @GetMapping("/{id}")
-    public CategoryResponse getCategoryById(@PathVariable Integer id){
-        return categoryService.findCategoryById(id);
-    }
-
     @PostMapping
-    public CategoryResponse createCategory(@RequestBody CategoryRequest request){
-        return categoryService.createCategory(request);
-    }
-
-    @PatchMapping("/{id}")
-    public CategoryResponse updateCategory(@PathVariable Integer id , @RequestBody UpdateCategoryRequest updateCategoryRequest){
-        return categoryService.updateCategory(id , updateCategoryRequest);
+    public CategoryResponse createCategory(@RequestBody CategoryRequest categoryRequest){
+        return categoryService.createCategory(categoryRequest);
     }
 }
