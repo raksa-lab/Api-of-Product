@@ -10,9 +10,9 @@ import java.util.NoSuchElementException;
 @Repository
 public class ProductRepositoryOld {
     private final List<Product> productList = new ArrayList<>(){{
-        add(new Product(1001 , "Cocacola" , "Nice When Cool" , 23.2f , 2));
-        add(new Product(1002 , "Idol" , "The Best For GenZ" , 21.3f , 4));
-        add( new Product(1003,"Sting","Unlimited Sweetness ",0.65f,4));
+//        add(new Product(1001 , "Cocacola" , "Nice When Cool" , 23.2f , 2));
+//        add(new Product(1002 , "Idol" , "The Best For GenZ" , 21.3f , 4));
+//        add( new Product(1003,"Sting","Unlimited Sweetness ",0.65f,4));
     }};
 
     public List<Product> getAllProduct(){

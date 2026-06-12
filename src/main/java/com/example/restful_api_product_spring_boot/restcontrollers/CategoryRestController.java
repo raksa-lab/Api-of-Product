@@ -6,6 +6,7 @@ import com.example.restful_api_product_spring_boot.dto.UpdateCategoryRequest;
 import com.example.restful_api_product_spring_boot.dto.UpdateProductRequest;
 import com.example.restful_api_product_spring_boot.service.CategoryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,13 +36,33 @@ public class CategoryRestController {
 //        return categoryService.updateCategory(id , updateCategoryRequest);
 //    }
 
+//    @GetMapping
+//    List<CategoryResponse> getAllCategory(){
+//        return categoryService.findAllCategories();
+//    }
+
     @GetMapping
-    List<CategoryResponse> getAllCategory(){
-        return categoryService.findAllCategories();
+    Page<CategoryResponse> getAllCategory(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(required = false, defaultValue = "") String keyword
+    ){
+        return categoryService.findAllCategories(page, size, sortBy, keyword);
+    }
+
+     @GetMapping("/{id}")
+    public CategoryResponse getCategoryById(@PathVariable Integer id){
+        return categoryService.findCategoryById(id);
     }
 
     @PostMapping
     public CategoryResponse createCategory(@RequestBody CategoryRequest categoryRequest){
         return categoryService.createCategory(categoryRequest);
+    }
+
+    @DeleteMapping("/{id}")
+    public boolean deleteCategory(@PathVariable Integer id){
+        return categoryService.deleteCategory(id);
     }
 }

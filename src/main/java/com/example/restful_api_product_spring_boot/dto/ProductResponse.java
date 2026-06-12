@@ -4,6 +4,7 @@ public record ProductResponse(
         Integer id,
         String name,
         String description,
-        float price
+        float price,
+        CategoryResponse category
 ) {
 }

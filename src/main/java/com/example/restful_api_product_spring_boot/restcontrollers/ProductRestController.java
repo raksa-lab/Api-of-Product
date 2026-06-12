@@ -5,9 +5,9 @@ import com.example.restful_api_product_spring_boot.dto.ProductResponse;
 import com.example.restful_api_product_spring_boot.dto.UpdateProductRequest;
 import com.example.restful_api_product_spring_boot.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -15,9 +15,19 @@ import java.util.List;
 public class ProductRestController {
     private final ProductService productService;
 
+//    @GetMapping
+//    public Page<ProductResponse> getProducts(Pageable pageable){
+//        return productService.findAllProducts(pageable);
+//    }
     @GetMapping
-    public List<ProductResponse> getProducts(){
-        return productService.findAllProducts();
+    public ResponseEntity<Page<ProductResponse>> getProducts(
+        @RequestParam(required = false, defaultValue = "") String keyword,
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "10") int size,
+        @RequestParam(defaultValue = "id") String sortBy) {
+
+        Page<ProductResponse> products = productService.findAllProducts(keyword, page, size, sortBy);
+        return ResponseEntity.ok(products);
     }
 
     @GetMapping("/{id}")
